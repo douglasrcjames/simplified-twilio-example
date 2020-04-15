@@ -2,11 +2,13 @@ import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 import Fab from '@material-ui/core/Fab';
-import Mic from '@material-ui/icons/Mic';
 import MicOff from '@material-ui/icons/MicOff';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import useLocalAudioToggle from '../../../hooks/useLocalAudioToggle/useLocalAudioToggle';
+import useVideoContext from '../../../hooks/useVideoContext/useVideoContext';
+import AudioLevelIndicator from '../../AudioLevelIndicator/AudioLevelIndicator';
+import { LocalAudioTrack } from 'twilio-video';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,6 +19,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function ToggleAudioButton(props: { disabled?: boolean }) {
+  const { localTracks } = useVideoContext();
+  const audioTrack = localTracks.find(track => track.kind === 'audio') as LocalAudioTrack;
   const classes = useStyles();
   const [isAudioEnabled, toggleAudioEnabled] = useLocalAudioToggle();
 
@@ -27,7 +31,7 @@ export default function ToggleAudioButton(props: { disabled?: boolean }) {
       PopperProps={{ disablePortal: true }}
     >
       <Fab className={classes.fab} onClick={toggleAudioEnabled} disabled={props.disabled} data-cy-audio-toggle>
-        {isAudioEnabled ? <Mic /> : <MicOff />}
+        {isAudioEnabled ? <AudioLevelIndicator size={30} audioTrack={audioTrack} /> : <MicOff />}
       </Fab>
     </Tooltip>
   );

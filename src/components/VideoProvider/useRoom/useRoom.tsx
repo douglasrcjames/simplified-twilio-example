@@ -57,7 +57,7 @@ export default function useRoom(localTracks: LocalTrack[], onError: Callback, op
         }
       );
     },
-    [options, onError]
+    [options, onError, _EventEmitter]
   );
 
   return { room, isConnecting, connect };

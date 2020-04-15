@@ -6,8 +6,6 @@ export interface StateContextType {
   error: TwilioError | null;
   setError(error: TwilioError | null): void;
   getToken(name: string, room: string): Promise<string>;
-  signIn?(passcode?: string): Promise<void>;
-  signOut?(): Promise<void>;
   isAuthReady?: boolean;
   isFetching: boolean;
 }
