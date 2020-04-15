@@ -3,12 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.9.10",
+    "@material-ui/icons": "^4.9.1",
+    "@primer/octicons-react": "^9.6.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@types/d3-timer": "^1.0.9",
+    "@types/fscreen": "^1.0.1",
+    "@types/lodash.throttle": "^4.1.6",
+    "@types/react-router-dom": "^5.1.4",
+    "@types/twilio-video": "^2.0.12",
+    "d3-timer": "^1.0.10",
+    "firebase": "^7.14.0",
+    "fscreen": "^1.0.2",
+    "lodash.throttle": "^4.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "twilio-video": "^2.3.0",
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "start": "react-scripts start",
