@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
 import Toolbar from '@material-ui/core/Toolbar';
-import Menu from './Menu/Menu';
 
 import { useAppState } from '../../state';
 import useRoomState from '../../hooks/useRoomState/useRoomState';
@@ -106,10 +105,6 @@ export default function MenuBar() {
         ) : (
           <h3>{roomName}</h3>
         )}
-        <div className={classes.rightButtonContainer}>
-          
-          <Menu />
-        </div>
       </Toolbar>
     </AppBar>
   );
