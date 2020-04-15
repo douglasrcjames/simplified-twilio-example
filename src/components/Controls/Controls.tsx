@@ -1,7 +1,8 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import clsx from 'clsx';
-
+import { useAppState } from '../../state';
 import EndCallButton from './EndCallButton/EndCallButton';
 import ToggleAudioButton from './ToggleAudioButton/ToggleAudioButton';
 import ToggleVideoButton from './ToggleVideoButton/ToggleVideoButton';
@@ -10,7 +11,7 @@ import ToggleScreenShareButton from './ToogleScreenShareButton/ToggleScreenShare
 
 import useIsUserActive from './useIsUserActive/useIsUserActive';
 import useRoomState from '../../hooks/useRoomState/useRoomState';
-
+import useVideoContext from '../../hooks/useVideoContext/useVideoContext';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -35,6 +36,9 @@ const useStyles = makeStyles((theme: Theme) =>
         bottom: `${theme.sidebarMobileHeight + 3}px`,
       },
     },
+    loadingSpinner: {
+      margin: '18px 0 0 15px'
+    },
   })
 );
 
@@ -44,9 +48,11 @@ export default function Controls() {
   const isReconnecting = roomState === 'reconnecting';
   const isUserActive = useIsUserActive();
   const showControls = isUserActive || roomState === 'disconnected';
+  const { isConnecting } = useVideoContext();
+  const { isFetching } = useAppState();
 
   return (
-    <div className={clsx(classes.container, { showControls })}>
+    <div className={clsx(classes.container, { showControls })}>      
       <ToggleAudioButton disabled={isReconnecting} />
       <ToggleVideoButton disabled={isReconnecting} />
       <ToggleFullScreenButton disabled={isReconnecting} />
@@ -56,6 +62,7 @@ export default function Controls() {
           <EndCallButton />
         </>
       )}
+      {(isConnecting || isFetching) && <CircularProgress className={classes.loadingSpinner} />}
     </div>
   );
 }

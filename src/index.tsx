@@ -26,7 +26,7 @@ const connectionOptions: ConnectOptions = {
       },
     },
   },
-  dominantSpeaker: true,
+  dominantSpeaker: false,
   maxAudioBitrate: 12000,
   networkQuality: { local: 1, remote: 1 },
   preferredVideoCodecs: [{ codec: 'VP8', simulcast: true }],
@@ -46,9 +46,9 @@ const VideoApp = () => {
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
     <CssBaseline />
-      <AppStateProvider>
+    <AppStateProvider>
       <VideoApp />
-      </AppStateProvider>
+    </AppStateProvider>
   </MuiThemeProvider>,
   document.getElementById('root')
 );
